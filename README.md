@@ -207,3 +207,23 @@ streamlit run app.py
 3. View AI classifications
 4. Search by tags
 5. Export results
+
+---
+
+## 🎯 Why This Project Matters
+
+This project demonstrates:
+
+* Practical ML deployment
+* Model inference best practices
+* UI/UX thinking for AI tools
+* Clean, readable Python code
+* Real-world application design
+
+It bridges the gap between **machine learning theory** and **production-ready applications**.
+
+---
+
+**Author:** *HomeFries88*
+**Purpose:** ML & Python project
+**Status:** Complete & extensible 🚀
