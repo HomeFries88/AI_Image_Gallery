@@ -1,0 +1,1 @@
+# 📷 AI Image Gallery Manager
