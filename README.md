@@ -79,7 +79,7 @@ Each image stores:
 ## 🧩 Application Architecture
 
 ```
-app.py
+main.py
 │
 ├── load_model()
 ├── preprocess_image()
@@ -89,3 +89,101 @@ app.py
     ├── Gallery Page
     └── Search & Export Page
 ```
+
+### Key Design Decisions
+
+* **Cached Model Loading**: Ensures the model loads once per session
+* **Session State Management**: Persists gallery data without a database
+* **Dynamic File Uploader Reset**: Prevents duplicate uploads
+* **Separation of Logic & UI**: Easier maintenance and extensibility
+
+---
+
+## 📄 Code Walkthrough
+
+### 1️⃣ Model Loading
+
+```python
+@st.cache_resource
+def load_cached_model():
+    return MobileNetV2(weights="imagenet")
+```
+* Uses Streamlit caching to avoid reloading the model
+* Improves performance and responsiveness
+
+---
+
+### 2️⃣ Image Preprocessing
+
+```python
+def preprocess_image(image):
+    img = np.array(image)
+    img = cv2.resize(img, (224, 224))
+    img = preprocess_input(img)
+    img = np.expand_dims(img, axis=0)
+    return img
+```
+
+* Converts image to NumPy array
+* Resizes to model input size
+* Applies ImageNet normalization
+* Adds batch dimension
+
+---
+
+### 3️⃣ Image Classification
+
+```python
+def classify_image(model, image):
+    processed_image = preprocess_image(image)
+    predictions = model.predict(processed_image)
+    return decode_predictions(predictions, top=5)[0]
+```
+
+* Runs inference
+* Decodes top 5 predictions
+* Returns label + confidence scores
+
+---
+
+### 4️⃣ Streamlit Pages
+
+#### 🔹 Upload & Classify
+
+* Upload multiple images
+* Progress bar for batch processing
+* Immediate AI tagging
+
+#### 🔹 Gallery
+
+* Grid-based image layout
+* Expandable tag details
+* Image removal support
+
+#### 🔹 Search & Export
+
+* Keyword search across AI tags
+* CSV export of predictions
+* Data preview using Pandas
+
+---
+
+## 📊 Exported Data Format
+
+The exported CSV includes:
+| Column    | Description             |
+| --------- | ----------------------- |
+| ID        | Unique image identifier |
+| Name      | Image filename          |
+| Timestamp | Upload time             |
+| Label 1–5 | AI predicted classes    |
+| Score 1–5 | Confidence percentages  |
+
+This format is suitable for:
+* Dataset analysis
+* ML auditing
+* Reporting & visualization
+
+---
+
+
