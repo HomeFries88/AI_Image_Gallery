@@ -66,3 +66,26 @@ Each image stores:
 * **Numpy** - numerical operations
 * **Pandas** - data manipulation and CSV exports
 * **PIL** - image handling
+
+### Why Streamlit?
+
+* Rapid prototyping
+* Minimal boilerplate
+* Built-in session state
+* Perfect for ML demos and dashboards
+
+---
+
+## 🧩 Application Architecture
+
+```
+app.py
+│
+├── load_model()
+├── preprocess_image()
+├── classify_image()
+└── main()
+    ├── Upload & Classify Page
+    ├── Gallery Page
+    └── Search & Export Page
+```
