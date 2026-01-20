@@ -33,3 +33,36 @@ The project emphasizes:
 
 * **MobileNetV2** (from `tensorflow.keras.applications`)
 * Pre-trained on **ImageNet**
+
+### Why MobileNetV2?
+
+* Lightweight and fast
+* Optimized for real-time inference
+* Ideal for interactive applications
+
+### Inference Flow
+
+1. Images resized to **224x224**
+2. Pixel values are normalized using `preprocess_input`
+3. Images passed through **C.N.N.**
+4. Top **5 Predictions** are decoded and stored
+
+Each image stores:
+
+* Predicted labels
+* Confident scores
+* Timestamp of upload
+
+---
+
+## ⚒️ Technologies Used:
+
+### Core Stack:
+
+* **Python 3** - main programming language
+* **Streamlit** - interactive web interface
+* **Tensorflow/Keras** - deep learning inference
+* **OpenCV (CV2)** - image pre-processing
+* **Numpy** - numerical operations
+* **Pandas** - data manipulation and CSV exports
+* **PIL** - image handling
