@@ -186,4 +186,24 @@ This format is suitable for:
 
 ---
 
+## ▶️ How to Run the Project
 
+### 1️⃣ Install Dependencies
+
+```bash
+pip install streamlit tensorflow opencv-python pillow pandas numpy
+```
+
+### 2️⃣ Run the Application
+
+```bash
+streamlit run app.py
+```
+
+### 3️⃣ Use the App
+
+1. Open browser at `http://localhost`
+2. Upload images
+3. View AI classifications
+4. Search by tags
+5. Export results
